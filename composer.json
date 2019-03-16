@@ -1,0 +1,48 @@
+{
+  "name": "tob0t/bitstamp-api-client",
+  "type": "library",
+  "description": "Bitstamp PHP Api Client for Bitstamp.com",
+  "keywords": [
+    "bitstamp",
+    "api",
+    "client",
+    "HTTP client",
+    "rest"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tobias Madner",
+      "email": "tobias.madner@gmx.at"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.3",
+    "guzzlehttp/guzzle": "^6.3",
+    "nesbot/carbon": "^1.22.1",
+    "illuminate/support": "~5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tob0t\\Bitstamp\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tob0t\\Bitstamp\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Tob0t\\Bitstamp\\BitstampServiceProvider"
+      ],
+      "aliases": {
+        "Bitstamp": "Tob0t\\Bitstamp\\Facade\\Bitstamp"
+      }
+    }
+  }
+}
