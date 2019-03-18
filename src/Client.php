@@ -1,18 +1,18 @@
 <?php
 
-namespace Tob0t\Bitstamp;
+namespace BitbuyAT\Bitstamp;
 
-use Tob0t\Bitstamp\Contracts\Client as ClientContract;
-use Tob0t\Bitstamp\Exceptions\BitstampApiErrorException;
-use Tob0t\Bitstamp\Objects\Balance;
-use Tob0t\Bitstamp\Objects\OrderBook;
-use Tob0t\Bitstamp\Objects\Pair;
-use Tob0t\Bitstamp\Objects\PairsCollection;
-use Tob0t\Bitstamp\Objects\Ticker;
-use Tob0t\Bitstamp\Objects\Transaction;
-use Tob0t\Bitstamp\Objects\TransactionsCollection;
-use Tob0t\Bitstamp\Objects\UserTransaction;
-use Tob0t\Bitstamp\Objects\UserTransactionsCollection;
+use BitbuyAT\Bitstamp\Contracts\Client as ClientContract;
+use BitbuyAT\Bitstamp\Exceptions\BitstampApiErrorException;
+use BitbuyAT\Bitstamp\Objects\Balance;
+use BitbuyAT\Bitstamp\Objects\OrderBook;
+use BitbuyAT\Bitstamp\Objects\Pair;
+use BitbuyAT\Bitstamp\Objects\PairsCollection;
+use BitbuyAT\Bitstamp\Objects\Ticker;
+use BitbuyAT\Bitstamp\Objects\Transaction;
+use BitbuyAT\Bitstamp\Objects\TransactionsCollection;
+use BitbuyAT\Bitstamp\Objects\UserTransaction;
+use BitbuyAT\Bitstamp\Objects\UserTransactionsCollection;
 use GuzzleHttp\ClientInterface as HttpClient;
 
 class Client implements ClientContract
