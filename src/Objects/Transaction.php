@@ -19,6 +19,7 @@ class Transaction
 
     /**
      * Unix timestamp date and time.
+     *
      * @return int
      */
     public function getDate(): int
@@ -28,6 +29,7 @@ class Transaction
 
     /**
      * Transaction ID.
+     *
      * @return int
      */
     public function getTransactionId(): int
@@ -37,6 +39,7 @@ class Transaction
 
     /**
      * Price.
+     *
      * @return float
      */
     public function price(): float
@@ -46,6 +49,7 @@ class Transaction
 
     /**
      * Amount.
+     *
      * @return float
      */
     public function amount(): float
@@ -56,6 +60,7 @@ class Transaction
     /**
      * Type
      * 0 (buy) or 1 (sell).
+     *
      * @return int
      */
     public function type(): int
@@ -65,6 +70,7 @@ class Transaction
 
     /**
      * Whole data array.
+     *
      * @return array
      */
     public function getData(): array

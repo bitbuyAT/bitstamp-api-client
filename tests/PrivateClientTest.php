@@ -1,17 +1,12 @@
 <?php
+
 namespace bitbuyAT\Bitstamp\Tests;
 
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Client as HttpClient;
-
 use bitbuyAT\Bitstamp\Client;
-use bitbuyAT\Bitstamp\Objects\Balance;
-use bitbuyAT\Bitstamp\Objects\OrderBook;
-use bitbuyAT\Bitstamp\Objects\Pair;
-use bitbuyAT\Bitstamp\Objects\PairsCollection;
 use bitbuyAT\Bitstamp\Objects\UserTransaction;
 use bitbuyAT\Bitstamp\Objects\UserTransactionsCollection;
-use bitbuyAT\Bitstamp\Objects\Ticker;
 use bitbuyAT\Bitstamp\Exceptions\BitstampApiErrorException;
 
 class PrivateClientTest extends TestCase
@@ -22,7 +17,7 @@ class PrivateClientTest extends TestCase
     protected $transactions;
     protected $assetPairs;
 
-    protected function setUp() :void
+    protected function setUp(): void
     {
         parent::setUp();
         // instantiate service
@@ -32,7 +27,6 @@ class PrivateClientTest extends TestCase
             getenv('BITSTAMP_SECRET') ?? null,
             getenv('BITSTAMP_CLIENT_ID') ?? null
         );
-
     }
 
     public function test_client_instance_can_be_created(): void
@@ -122,6 +116,4 @@ class PrivateClientTest extends TestCase
         $this->expectExceptionMessage('Invalid offset.');
         $this->bitstampService->getUserTransactions('btceur', -1);
     }
-
-   
 }

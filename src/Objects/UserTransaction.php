@@ -19,6 +19,7 @@ class UserTransaction
 
     /**
      * Unix timestamp date and time.
+     *
      * @return string
      */
     public function getDateTime(): string
@@ -28,6 +29,7 @@ class UserTransaction
 
     /**
      * Transaction ID.
+     *
      * @return int
      */
     public function getTransactionId(): int
@@ -37,6 +39,7 @@ class UserTransaction
 
     /**
      * Transaction type: 0 - deposit; 1 - withdrawal; 2 - market trade; 14 - sub account transfer.
+     *
      * @return int
      */
     public function getType(): int
@@ -46,6 +49,7 @@ class UserTransaction
 
     /**
      * USD Amount.
+     *
      * @return float
      */
     public function usd(): float
@@ -55,6 +59,7 @@ class UserTransaction
 
     /**
      * EUR Amount.
+     *
      * @return float
      */
     public function eur(): float
@@ -64,6 +69,7 @@ class UserTransaction
 
     /**
      * BTC Amount.
+     *
      * @return float
      */
     public function btc(): float
@@ -73,6 +79,7 @@ class UserTransaction
 
     /**
      * XRP Amount.
+     *
      * @return float
      */
     public function xrp(): float
@@ -82,7 +89,8 @@ class UserTransaction
 
     /**
      * Exchange rate.
-     * btc_usd
+     * btc_usd.
+     *
      * @return float
      */
     public function btcusdExchangeRate(): float
@@ -92,7 +100,8 @@ class UserTransaction
 
     /**
      * Exchange rate.
-     * btc_eur
+     * btc_eur.
+     *
      * @return float
      */
     public function btceurExchangeRate(): float
@@ -122,6 +131,7 @@ class UserTransaction
 
     /**
      * Whole data array.
+     *
      * @return array
      */
     public function getData(): array

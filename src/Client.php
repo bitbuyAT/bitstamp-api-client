@@ -21,21 +21,21 @@ class Client implements ClientContract
     const API_VERSION = 'v2';
 
     /**
-     * API key
+     * API key.
      *
      * @var string
      */
     protected $key;
 
     /**
-     * API secret
+     * API secret.
      *
      * @var string
      */
     protected $secret;
 
     /**
-     * API secret
+     * API secret.
      *
      * @var string
      */
@@ -48,9 +48,9 @@ class Client implements ClientContract
 
     /**
      * @param HttpClient $client
-     * @param string $key API key
-     * @param string $secret API secret
-     * @param string $clientId client id (can be found in account balance)
+     * @param string     $key      API key
+     * @param string     $secret   API secret
+     * @param string     $clientId client id (can be found in account balance)
      */
     public function __construct(HttpClient $client, ?string $key = '', ?string $secret = '', ?string $clientId = '')
     {
@@ -61,10 +61,12 @@ class Client implements ClientContract
     }
 
     /**
-     * Get ticker information
+     * Get ticker information.
      *
      * @param string $pair
+     *
      * @return Ticker
+     *
      * @throws BitstampApiErrorException
      */
     public function getTicker(string $pair): Ticker
@@ -75,10 +77,12 @@ class Client implements ClientContract
     }
 
     /**
-     * Get hourly ticker information
+     * Get hourly ticker information.
      *
      * @param string $pair
+     *
      * @return Ticker
+     *
      * @throws BitstampApiErrorException
      */
     public function getHourlyTicker(string $pair): Ticker
@@ -89,14 +93,16 @@ class Client implements ClientContract
     }
 
     /**
-     * Get order book
+     * Get order book.
      *
      * @param string $pair
-     * @param integer $group optional group
-     *  0: orders are not grouped at same price
-     *  1: orders are grouped at same price - default
-     *  2: orders with their order ids are not grouped at same price
+     * @param int    $group optional group
+     *                      0: orders are not grouped at same price
+     *                      1: orders are grouped at same price - default
+     *                      2: orders with their order ids are not grouped at same price
+     *
      * @return OrderBook
+     *
      * @throws BitstampApiErrorException
      */
     public function getOrderBook(string $pair, ?int $group = 1): OrderBook
@@ -107,11 +113,14 @@ class Client implements ClientContract
     }
 
     /**
-     * Get current transactions
+     * Get current transactions.
      *
      * @param string $pair
-     * @param string $time The time interval from which we want the transactions to be returned. Possible values are minute, hour (default) or day.
+     * @param string $time The time interval from which we want the transactions to be returned.
+     *                     Possible values are minute, hour (default) or day.
+     *
      * @return TransactionsCollection|Transaction[]
+     *
      * @throws BitstampApiErrorException
      */
     public function getTransactions(string $pair, ?string $time = 'hour'): TransactionsCollection
@@ -123,11 +132,11 @@ class Client implements ClientContract
         });
     }
 
-    
     /**
-     * Get tradable asset pairs
+     * Get tradable asset pairs.
      *
      * @return PairsCollection|Pair[]
+     *
      * @throws BitstampApiErrorException
      */
     public function getAssetPairs(): PairsCollection
@@ -140,9 +149,10 @@ class Client implements ClientContract
     }
 
     /**
-     * Get account balance
+     * Get account balance.
      *
      * @return Balance
+     *
      * @throws BitstampApiErrorException
      */
     public function getAccountBalance(): Balance
@@ -152,15 +162,17 @@ class Client implements ClientContract
         return new Balance($result);
     }
 
-     /**
-     * Get user transactions
+    /**
+     * Get user transactions.
      *
      * @param string $pair
-     * @param int [$offset=0] - Skip that many transactions before returning results (default: 0).
-     * @param int [$limit=100] - Limit result to that many transactions (default: 100; maximum: 1000).
-     * @param string [$sort='desc'] - Sorting by date and time: asc - ascending; desc - descending (default: desc).
-     * @param int [$sinceTimestamp] - Show only transactions from unix timestamp (for max 30 days old).
+     * @param int [$offset=0] - Skip that many transactions before returning results (default: 0)
+     * @param int [$limit=100] - Limit result to that many transactions (default: 100; maximum: 1000)
+     * @param string [$sort='desc'] - Sorting by date and time: asc - ascending; desc - descending (default: desc)
+     * @param int [$sinceTimestamp] - Show only transactions from unix timestamp (for max 30 days old)
+     *
      * @return UserTransactionsCollection|Transaction[]
+     *
      * @throws BitstampApiErrorException
      */
     public function getUserTransactions(?string $pair = null, ?int $offset = 0, ?int $limit = 100, ?string $sort = 'desc', ?int $sinceTimestamp = null): UserTransactionsCollection
@@ -186,11 +198,14 @@ class Client implements ClientContract
 
     /**
      * Make public request request
-     * Currently only get request
+     * Currently only get request.
+     *
      * @param string $method
      * @param string $path
-     * @param array $parameters
+     * @param array  $parameters
+     *
      * @return array
+     *
      * @throws BitstampApiErrorException
      */
     public function publicRequest(string $method, string $path = '', $parameters = []): array
@@ -199,9 +214,9 @@ class Client implements ClientContract
 
         try {
             $response = $this->client->get($this->buildUrl($method).'/'.$path, [
-            'headers' => $headers,
-            'query' => $parameters,
-        ]);
+                'headers' => $headers,
+                'query' => $parameters,
+            ]);
         } catch (\Exception $exception) {
             if ($exception->getCode() === 404) {
                 throw new BitstampApiErrorException('Endpoint not found: ('.$this->buildUrl($method).'/'.$path.')');
@@ -210,7 +225,6 @@ class Client implements ClientContract
             }
         }
 
-
         return $this->decodeResult(
             $response->getBody()->getContents()
         );
@@ -218,10 +232,13 @@ class Client implements ClientContract
 
     /**
      * Make private request request
-     * Currently only post request
+     * Currently only post request.
+     *
      * @param string $method
-     * @param array $parameters
+     * @param array  $parameters
+     *
      * @return array
+     *
      * @throws BitstampApiErrorException
      */
     public function privateRequest(string $method, array $parameters = []): array
@@ -240,34 +257,39 @@ class Client implements ClientContract
             ]);
         } catch (\Exception $exception) {
             if ($exception->getCode() === 404) {
-                throw new BitstampApiErrorException('Endpoint not found: ('.$this->buildUrl($method).'/'.$path.')');
+                throw new BitstampApiErrorException('Endpoint not found: ('.$this->buildUrl($method).')');
             } else {
                 throw new BitstampApiErrorException($exception);
             }
         }
+
         return $this->decodeResult(
             $response->getBody()->getContents()
         );
     }
 
     /**
-     * Build url
+     * Build url.
+     *
      * @param string $method
+     *
      * @return string
      */
     protected function buildUrl(string $method): string
     {
-        return static::API_URL . $this->buildPath($method);
+        return static::API_URL.$this->buildPath($method);
     }
 
     /**
-     * Build path
+     * Build path.
+     *
      * @param string $method
+     *
      * @return string
      */
     protected function buildPath(string $method): string
     {
-        return '/' . static::API_VERSION . '/' . $method;
+        return '/'.static::API_VERSION.'/'.$method;
     }
 
     /**
@@ -277,33 +299,36 @@ class Client implements ClientContract
      *   API_SECRET,
      *   msg=message,
      *   digestmod=hashlib.sha256
-     * ).hexdigest().upper()
+     * ).hexdigest().upper().
+     *
      * @return string
      */
     protected function generateSign(): string
     {
         $message = $this->nonce.$this->clientId.$this->key;
+
         return strtoupper(hash_hmac('sha256', $message, $this->secret));
     }
 
-
     /**
      * Generate a 64 bit nonce using a timestamp at microsecond resolution
-     * string functions are used to avoid problems on 32 bit systems
+     * string functions are used to avoid problems on 32 bit systems.
      *
      * @return string
      */
     protected function generateNonce(): string
     {
         $nonce = explode(' ', microtime());
-        $this->nonce = $nonce[1] . str_pad(substr($nonce[0], 2, 6), 6, '0');
+        $this->nonce = $nonce[1].str_pad(substr($nonce[0], 2, 6), 6, '0');
+
         return $this->nonce;
     }
 
     /**
-     * Decode json response from Bitstamp API
+     * Decode json response from Bitstamp API.
      *
      * @param $response
+     *
      * @return array
      */
     protected function decodeResult($response): array

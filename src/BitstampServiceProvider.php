@@ -9,8 +9,6 @@ class BitstampServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -19,12 +17,10 @@ class BitstampServiceProvider extends ServiceProvider
 
     /**
      * Register services.
-     *
-     * @return void
      */
     public function register()
     {
-        $configPath = __DIR__ . '/../config/bitstamp.php';
+        $configPath = __DIR__.'/../config/bitstamp.php';
         $this->mergeConfigFrom($configPath, 'bitstamp');
     }
 

@@ -18,7 +18,8 @@ class OrderBook
     }
 
     /**
-     * Get Bids prices
+     * Get Bids prices.
+     *
      * @return array
      */
     public function getBids(): array
@@ -27,7 +28,8 @@ class OrderBook
     }
 
     /**
-     * Get Asks prices
+     * Get Asks prices.
+     *
      * @return array
      */
     public function getAsks(): array
@@ -37,6 +39,7 @@ class OrderBook
 
     /**
      * Unix timestamp date and time.
+     *
      * @return int
      */
     public function timestamp(): int
@@ -44,9 +47,9 @@ class OrderBook
         return (int) $this->data['timestamp'];
     }
 
-
     /**
      * Whole data array.
+     *
      * @return array
      */
     public function getData(): array

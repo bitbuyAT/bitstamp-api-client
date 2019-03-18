@@ -26,6 +26,7 @@ We are constantly updating and improving our code. We hope it can be for the ben
 
 # License
 MIT License
+
 Please check [LICENSE.txt](https://github.com/bitbuyAT/bitstamp-api-client/blob/master/LICENSE.txt)
 
 

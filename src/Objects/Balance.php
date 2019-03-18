@@ -18,7 +18,7 @@ class Balance
     }
 
     /**
-     * Balance BCH
+     * Balance BCH.
      *
      * @return float
      */
@@ -28,7 +28,7 @@ class Balance
     }
 
     /**
-     * Reserved BCH
+     * Reserved BCH.
      *
      * @return float
      */
@@ -38,7 +38,7 @@ class Balance
     }
 
     /**
-     * Available BCH
+     * Available BCH.
      *
      * @return float
      */
@@ -48,7 +48,7 @@ class Balance
     }
 
     /**
-     * Balance BTC
+     * Balance BTC.
      *
      * @return float
      */
@@ -58,7 +58,7 @@ class Balance
     }
 
     /**
-     * Reserved BTC
+     * Reserved BTC.
      *
      * @return float
      */
@@ -68,7 +68,7 @@ class Balance
     }
 
     /**
-     * Available BTC
+     * Available BTC.
      *
      * @return float
      */
@@ -78,7 +78,7 @@ class Balance
     }
 
     /**
-     * Balance ETH
+     * Balance ETH.
      *
      * @return float
      */
@@ -88,7 +88,7 @@ class Balance
     }
 
     /**
-     * Reserved ETH
+     * Reserved ETH.
      *
      * @return float
      */
@@ -98,7 +98,7 @@ class Balance
     }
 
     /**
-     * Available ETH
+     * Available ETH.
      *
      * @return float
      */
@@ -108,7 +108,7 @@ class Balance
     }
 
     /**
-     * Balance EUR
+     * Balance EUR.
      *
      * @return float
      */
@@ -118,7 +118,7 @@ class Balance
     }
 
     /**
-     * Reserved EUR
+     * Reserved EUR.
      *
      * @return float
      */
@@ -128,7 +128,7 @@ class Balance
     }
 
     /**
-     * Available EUR
+     * Available EUR.
      *
      * @return float
      */
@@ -138,7 +138,7 @@ class Balance
     }
 
     /**
-     * Balance LTC
+     * Balance LTC.
      *
      * @return float
      */
@@ -148,7 +148,7 @@ class Balance
     }
 
     /**
-     * Reserved LTC
+     * Reserved LTC.
      *
      * @return float
      */
@@ -158,7 +158,7 @@ class Balance
     }
 
     /**
-     * Available LTC
+     * Available LTC.
      *
      * @return float
      */
@@ -168,7 +168,7 @@ class Balance
     }
 
     /**
-     * Balance USD
+     * Balance USD.
      *
      * @return float
      */
@@ -178,7 +178,7 @@ class Balance
     }
 
     /**
-     * Reserved USD
+     * Reserved USD.
      *
      * @return float
      */
@@ -188,7 +188,7 @@ class Balance
     }
 
     /**
-     * Available USD
+     * Available USD.
      *
      * @return float
      */
@@ -198,7 +198,7 @@ class Balance
     }
 
     /**
-     * Balance XRP
+     * Balance XRP.
      *
      * @return float
      */
@@ -208,7 +208,7 @@ class Balance
     }
 
     /**
-     * Reserved XRP
+     * Reserved XRP.
      *
      * @return float
      */
@@ -218,7 +218,7 @@ class Balance
     }
 
     /**
-     * Available XRP
+     * Available XRP.
      *
      * @return float
      */
@@ -377,10 +377,9 @@ class Balance
         return (float) $this->data['xrpusd_fee'];
     }
 
-    
     /**
      * Whole data array.
-     * 
+     *
      * @return array
      */
     public function getData(): array

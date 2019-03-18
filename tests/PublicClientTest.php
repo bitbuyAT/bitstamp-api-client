@@ -1,9 +1,9 @@
 <?php
+
 namespace bitbuyAT\Bitstamp\Tests;
 
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Client as HttpClient;
-
 use bitbuyAT\Bitstamp\Client;
 use bitbuyAT\Bitstamp\Objects\OrderBook;
 use bitbuyAT\Bitstamp\Objects\Pair;
@@ -21,7 +21,7 @@ class PublicClientTest extends TestCase
     protected $transactions;
     protected $assetPairs;
 
-    protected function setUp() :void
+    protected function setUp(): void
     {
         parent::setUp();
         // instantiate service

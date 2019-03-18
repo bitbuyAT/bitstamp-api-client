@@ -17,8 +17,9 @@ class Ticker
         $this->data = $data;
     }
 
-     /**
-     * Last price
+    /**
+     * Last price.
+     *
      * @return float
      */
     public function lastPrice(): float
@@ -28,6 +29,7 @@ class Ticker
 
     /**
      * Last 24 hours price high.
+     *
      * @return float
      */
     public function highPrice(): float
@@ -37,6 +39,7 @@ class Ticker
 
     /**
      * Last 24 hours price low.
+     *
      * @return float
      */
     public function lowPrice(): float
@@ -46,6 +49,7 @@ class Ticker
 
     /**
      * Last 24 hours volume weighted average price.
+     *
      * @return float
      */
     public function vawpPrice(): float
@@ -55,6 +59,7 @@ class Ticker
 
     /**
      * Last 24 hours volume.
+     *
      * @return float
      */
     public function volume(): float
@@ -65,6 +70,7 @@ class Ticker
     /**
      * Bid price
      * Highest buy order.
+     *
      * @return float
      */
     public function bidPrice(): float
@@ -75,6 +81,7 @@ class Ticker
     /**
      * Ask price
      * Lowest sell order.
+     *
      * @return float
      */
     public function askPrice(): float
@@ -82,9 +89,9 @@ class Ticker
         return (float) $this->data['ask'];
     }
 
-    
     /**
      * Unix timestamp date and time.
+     *
      * @return int
      */
     public function timestamp(): int
@@ -94,6 +101,7 @@ class Ticker
 
     /**
      * First price of the day.
+     *
      * @return float
      */
     public function openPrice(): float
@@ -103,6 +111,7 @@ class Ticker
 
     /**
      * Whole data array.
+     *
      * @return array
      */
     public function getData(): array

@@ -5,7 +5,7 @@ namespace bitbuyAT\Bitstamp\Objects;
 class Pair
 {
     /**
-     * @var string
+     * @var array
      */
     protected $data;
 
@@ -18,7 +18,7 @@ class Pair
     }
 
     /**
-     * Pair name
+     * Pair name.
      *
      * @return string
      */
@@ -58,7 +58,7 @@ class Pair
     }
 
     /**
-     * Minimum order size. (includes asset code in string)
+     * Minimum order size. (includes asset code in string).
      *
      * @return string
      */
@@ -89,6 +89,7 @@ class Pair
 
     /**
      * Whole data array.
+     *
      * @return array
      */
     public function getData(): array
