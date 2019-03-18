@@ -1,6 +1,6 @@
 ## This project is still work in progress, and not finished yet!
 # bitstamp-api-client
-Bitstamp PHP Api Client for Bitstamp.com
+Bitstamp PHP Api Client for Bitstamp
 
 # Install
 ```composer require bitbuy-at/bitstamp-api-client```
