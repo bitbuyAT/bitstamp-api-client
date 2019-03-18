@@ -1,17 +1,17 @@
 <?php
-namespace BitbuyAT\Bitstamp\Tests;
+namespace bitbuyAT\Bitstamp\Tests;
 
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Client as HttpClient;
 
-use BitbuyAT\Bitstamp\Client;
-use BitbuyAT\Bitstamp\Objects\OrderBook;
-use BitbuyAT\Bitstamp\Objects\Pair;
-use BitbuyAT\Bitstamp\Objects\PairsCollection;
-use BitbuyAT\Bitstamp\Objects\Transaction;
-use BitbuyAT\Bitstamp\Objects\TransactionsCollection;
-use BitbuyAT\Bitstamp\Objects\Ticker;
-use BitbuyAT\Bitstamp\Exceptions\BitstampApiErrorException;
+use bitbuyAT\Bitstamp\Client;
+use bitbuyAT\Bitstamp\Objects\OrderBook;
+use bitbuyAT\Bitstamp\Objects\Pair;
+use bitbuyAT\Bitstamp\Objects\PairsCollection;
+use bitbuyAT\Bitstamp\Objects\Transaction;
+use bitbuyAT\Bitstamp\Objects\TransactionsCollection;
+use bitbuyAT\Bitstamp\Objects\Ticker;
+use bitbuyAT\Bitstamp\Exceptions\BitstampApiErrorException;
 
 class PublicClientTest extends TestCase
 {

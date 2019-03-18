@@ -1,8 +1,8 @@
 <?php
 
-namespace BitbuyAT\Bitstamp\Facade;
+namespace bitbuyAT\Bitstamp\Facade;
 
-use BitbuyAT\Bitstamp\Contracts\Client;
+use bitbuyAT\Bitstamp\Contracts\Client;
 use Illuminate\Support\Facades\Facade;
 
 class Bitstamp extends Facade

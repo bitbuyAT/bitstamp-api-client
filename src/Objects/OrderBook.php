@@ -1,6 +1,6 @@
 <?php
 
-namespace BitbuyAT\Bitstamp\Objects;
+namespace bitbuyAT\Bitstamp\Objects;
 
 class OrderBook
 {

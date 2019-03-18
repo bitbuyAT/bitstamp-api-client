@@ -1,6 +1,6 @@
 <?php
 
-namespace BitbuyAT\Bitstamp\Exceptions;
+namespace bitbuyAT\Bitstamp\Exceptions;
 
 use Exception;
 

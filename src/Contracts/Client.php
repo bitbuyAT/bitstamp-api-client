@@ -1,17 +1,17 @@
 <?php
 
-namespace BitbuyAT\Bitstamp\Contracts;
+namespace bitbuyAT\Bitstamp\Contracts;
 
-use BitbuyAT\Bitstamp\Objects\Balance;
-use BitbuyAT\Bitstamp\Objects\OrderBook;
-use BitbuyAT\Bitstamp\Objects\Pair;
-use BitbuyAT\Bitstamp\Objects\PairsCollection;
-use BitbuyAT\Bitstamp\Objects\Ticker;
-use BitbuyAT\Bitstamp\Objects\Transaction;
-use BitbuyAT\Bitstamp\Objects\TransactionsCollection;
-use BitbuyAT\Bitstamp\Objects\UserTransaction;
-use BitbuyAT\Bitstamp\Objects\UserTransactionsCollection;
-use BitbuyAT\Bitstamp\Exceptions\BitstampApiErrorException;
+use bitbuyAT\Bitstamp\Objects\Balance;
+use bitbuyAT\Bitstamp\Objects\OrderBook;
+use bitbuyAT\Bitstamp\Objects\Pair;
+use bitbuyAT\Bitstamp\Objects\PairsCollection;
+use bitbuyAT\Bitstamp\Objects\Ticker;
+use bitbuyAT\Bitstamp\Objects\Transaction;
+use bitbuyAT\Bitstamp\Objects\TransactionsCollection;
+use bitbuyAT\Bitstamp\Objects\UserTransaction;
+use bitbuyAT\Bitstamp\Objects\UserTransactionsCollection;
+use bitbuyAT\Bitstamp\Exceptions\BitstampApiErrorException;
 
 interface Client
 {

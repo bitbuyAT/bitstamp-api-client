@@ -31,21 +31,21 @@
   },
   "autoload": {
     "psr-4": {
-      "BitbuyAT\\Bitstamp\\": "src/"
+      "bitbuyAT\\Bitstamp\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "BitbuyAT\\Bitstamp\\": "tests/"
+      "bitbuyAT\\Bitstamp\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "BitbuyAT\\Bitstamp\\BitstampServiceProvider"
+        "bitbuyAT\\Bitstamp\\BitstampServiceProvider"
       ],
       "aliases": {
-        "Bitstamp": "BitbuyAT\\Bitstamp\\Facade\\Bitstamp"
+        "Bitstamp": "bitbuyAT\\Bitstamp\\Facade\\Bitstamp"
       }
     }
   }
