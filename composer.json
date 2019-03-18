@@ -1,5 +1,5 @@
 {
-  "name": "bitbuyAT/bitstamp-api-client",
+  "name": "bitbuy-at/bitstamp-api-client",
   "type": "library",
   "description": "Bitstamp PHP Api Client for Bitstamp.com",
   "keywords": [

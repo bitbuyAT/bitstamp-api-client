@@ -3,7 +3,7 @@
 Bitstamp PHP Api Client for Bitstamp.com
 
 # Install
-```composer require bitbuyAT/bitstamp-api-client```
+```composer require bitbuy-at/bitstamp-api-client```
 
 # Usage
 // TODO
@@ -19,7 +19,7 @@ Just fork our code, make your changes, then let us know and we will review it.
 2. Create a feature branch (git checkout -b my_feature)
 3. Commit your changes (git commit -m "Added My Feature")
 4. Push to the branch (git push origin my_feature)
-5. Open a [Pull Request](https://github.com/bitbuyA/bitstamp-api-client/compare)
+5. Open a [Pull Request](https://github.com/bitbuyAT/bitstamp-api-client/compare)
 6. Enjoy and wait ;)
 
 We are constantly updating and improving our code. We hope it can be for the benefit of the entire community.
