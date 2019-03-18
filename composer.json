@@ -1,5 +1,5 @@
 {
-  "name": "tob0t/bitstamp-api-client",
+  "name": "bitbuyAT/bitstamp-api-client",
   "type": "library",
   "description": "Bitstamp PHP Api Client for Bitstamp.com",
   "keywords": [
@@ -11,6 +11,10 @@
   ],
   "license": "MIT",
   "authors": [
+    {
+      "name": "bitbuy GmbH",
+      "email": "contact@bitbuy.at"
+    },
     {
       "name": "Tobias Madner",
       "email": "tobias.madner@gmx.at"
@@ -27,21 +31,21 @@
   },
   "autoload": {
     "psr-4": {
-      "Tob0t\\Bitstamp\\": "src/"
+      "BitbuyAT\\Bitstamp\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tob0t\\Bitstamp\\": "tests/"
+      "BitbuyAT\\Bitstamp\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Tob0t\\Bitstamp\\BitstampServiceProvider"
+        "BitbuyAT\\Bitstamp\\BitstampServiceProvider"
       ],
       "aliases": {
-        "Bitstamp": "Tob0t\\Bitstamp\\Facade\\Bitstamp"
+        "Bitstamp": "BitbuyAT\\Bitstamp\\Facade\\Bitstamp"
       }
     }
   }

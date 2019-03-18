@@ -1,6 +1,6 @@
 <?php
 
-namespace Tob0t\Bitstamp;
+namespace BitbuyAT\Bitstamp;
 
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Support\ServiceProvider;

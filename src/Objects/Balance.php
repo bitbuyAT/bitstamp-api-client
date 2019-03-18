@@ -1,6 +1,6 @@
 <?php
 
-namespace Tob0t\Bitstamp\Objects;
+namespace BitbuyAT\Bitstamp\Objects;
 
 class Balance
 {
