@@ -1,7 +1,7 @@
 {
   "name": "bitbuy-at/bitstamp-api-client",
   "type": "library",
-  "description": "Bitstamp PHP Api Client for Bitstamp.com",
+  "description": "Client for Bitstamp.net HTTP API v2 with support for Laravel",
   "keywords": [
     "bitstamp",
     "api",

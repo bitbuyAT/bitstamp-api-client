@@ -1,6 +1,6 @@
 ## This project is still work in progress, and not finished yet!
 # bitstamp-api-client
-Bitstamp PHP Api Client for Bitstamp
+Client for Bitstamp.net HTTP API v2 with support for Laravel
 
 # Install
 ```composer require bitbuy-at/bitstamp-api-client```
