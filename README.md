@@ -2,7 +2,7 @@
 # bitstamp-api-client
 Client for Bitstamp.net HTTP API v2 with support for Laravel
 
-*The structure of this package was strongly influenced by the design of the kraken-api-client. So please check out [Butschters](https://github.com/butschster/kraken-api-client) package as well.*
+*The structure of this package was strongly influenced by the design of the [kraken-api-client](https://github.com/butschster/kraken-api-client) from Butschster.*
 
 # Install
 ```composer require bitbuy-at/bitstamp-api-client```
