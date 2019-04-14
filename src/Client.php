@@ -165,7 +165,7 @@ class Client implements ClientContract
     /**
      * Get user transactions.
      *
-     * @param string $pair
+     * @param string [$pair=null] - Pair to filter for, if left empty there will be queried for all pairs (default: null)
      * @param int [$offset=0] - Skip that many transactions before returning results (default: 0)
      * @param int [$limit=100] - Limit result to that many transactions (default: 100; maximum: 1000)
      * @param string [$sort='desc'] - Sorting by date and time: asc - ascending; desc - descending (default: desc)
@@ -177,7 +177,6 @@ class Client implements ClientContract
      */
     public function getUserTransactions(?string $pair = null, ?int $offset = 0, ?int $limit = 100, ?string $sort = 'desc', ?int $sinceTimestamp = null): UserTransactionsCollection
     {
-        $path = $pair ? $pair : 'all';
         $params = [
             'offset' => $offset,
             'limit' => $limit,
@@ -185,7 +184,7 @@ class Client implements ClientContract
             'sinceTimestamp' => $sinceTimestamp,
         ];
 
-        $result = $this->privateRequest('user_transactions/'.$path, $params);
+        $result = $this->privateRequest('user_transactions/'.$pair, $params);
 
         if (isset($result['status']) && $result['status'] === 'error') {
             throw new BitstampApiErrorException($result['reason']);

@@ -82,7 +82,7 @@ interface Client
     /**
      * Get user transactions.
      *
-     * @param string $pair
+     * @param string [$pair=null] - Pair to filter for, if left empty there will be queried for all pairs (default: null)
      * @param int [$offset=0] - Skip that many transactions before returning results (default: 0)
      * @param int [$limit=100] - Limit result to that many transactions (default: 100; maximum: 1000)
      * @param string [$sort='desc'] - Sorting by date and time: asc - ascending; desc - descending (default: desc)
