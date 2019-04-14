@@ -25,7 +25,7 @@ class PrivateClientTest extends TestCase
             new HttpClient(),
             getenv('BITSTAMP_KEY') ?? null,
             getenv('BITSTAMP_SECRET') ?? null,
-            getenv('BITSTAMP_CLIENT_ID') ?? null
+            getenv('BITSTAMP_CUSTOMER_ID') ?? null
         );
     }
 

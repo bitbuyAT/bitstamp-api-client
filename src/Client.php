@@ -39,7 +39,7 @@ class Client implements ClientContract
      *
      * @var string
      */
-    protected $clientId;
+    protected $customerId;
 
     /**
      * @var HttpClient
@@ -50,14 +50,14 @@ class Client implements ClientContract
      * @param HttpClient $client
      * @param string     $key      API key
      * @param string     $secret   API secret
-     * @param string     $clientId client id (can be found in account balance)
+     * @param string     $customerId customer id (can be found in account balance)
      */
-    public function __construct(HttpClient $client, ?string $key = '', ?string $secret = '', ?string $clientId = '')
+    public function __construct(HttpClient $client, ?string $key = '', ?string $secret = '', ?string $customerId = '')
     {
         $this->client = $client;
         $this->key = $key;
         $this->secret = $secret;
-        $this->clientId = $clientId;
+        $this->customerId = $customerId;
     }
 
     /**
@@ -305,7 +305,7 @@ class Client implements ClientContract
      */
     protected function generateSign(): string
     {
-        $message = $this->nonce.$this->clientId.$this->key;
+        $message = $this->nonce.$this->customerId.$this->key;
 
         return strtoupper(hash_hmac('sha256', $message, $this->secret));
     }

@@ -37,7 +37,7 @@ You can update your .env file with the following settings (only needed for priva
 ```
 BITSTAMP_KEY=key
 BITSTAMP_SECRET=secret
-BITSTAMP_CLIENT_ID=client-id
+BITSTAMP_CUSTOMER_ID=customer-id
 ```
 ## Usage
 

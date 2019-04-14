@@ -7,6 +7,6 @@ return [
     // API Secret key
     'secret' => env('BITSTAMP_SECRET'),
 
-    // API Version
-    'client_id' => env('BITSTAMP_CLIENT_ID'),
+    // Customer ID
+    'customer_id' => env('BITSTAMP_CUSTOMER_ID'),
 ];
