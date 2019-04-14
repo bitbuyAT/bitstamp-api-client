@@ -33,7 +33,7 @@ class BitstampServiceProvider extends ServiceProvider
                 new HttpClient(),
                 $config['key'] ?? null,
                 $config['secret'] ?? null,
-                $config['client_id'] ?? null
+                $config['customer_id'] ?? null
             );
         });
     }

@@ -17,6 +17,6 @@
         <env name="APP_ENV" value="testing"/>
         <env name="BITSTAMP_KEY" value="key"/>
         <env name="BITSTAMP_SECRET" value="secret"/>
-        <env name="BITSTAMP_CLIENT_ID" value="clientId"/>
+        <env name="BITSTAMP_CUSTOMER_ID" value="customerId"/>
     </php>
 </phpunit>
