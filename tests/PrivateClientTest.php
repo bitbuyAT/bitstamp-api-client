@@ -116,4 +116,10 @@ class PrivateClientTest extends TestCase
         $this->expectExceptionMessage('Invalid offset.');
         $this->bitstampService->getUserTransactions('btceur', -1);
     }
+
+    public function test_it_should_get_all_user_transactions_if_pair_is_empty(): void
+    {
+        $userTransactions = $this->bitstampService->getUserTransactions();
+        $this->assertInstanceOf(UserTransactionsCollection::class, $userTransactions);
+    }
 }
