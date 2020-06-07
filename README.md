@@ -74,4 +74,8 @@ MIT License
 
 Please check [LICENSE.txt](https://github.com/bitbuyAT/bitstamp-api-client/blob/master/LICENSE.txt)
 
+# Visit us
+
+bitbuy GmbH - https://bitbuy.at
+
 
