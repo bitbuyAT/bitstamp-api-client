@@ -1,4 +1,5 @@
-## This project is still work in progress, and not finished yet!
+*This project is only supporting a selected choice of api calls to the bitstamp api, feel free to contribute!*
+
 # bitstamp-api-client
 Client for Bitstamp.net HTTP API v2 with support for Laravel
 
@@ -51,7 +52,7 @@ $prices->askPrice();
 $prices->bidPrice();
 ```
 
-*More examples will follow soon.*
+*More examples can be found in the /tests folder.*
 
 # Contributing
 Want to contribute? Great!
