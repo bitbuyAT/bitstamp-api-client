@@ -54,6 +54,11 @@ $prices->bidPrice();
 
 *More examples can be found in the /tests folder.*
 
+### Supported Methods
+All currently supported methods with params explanation can be found in the client interface (`src/Contracts/Client.php`).
+
+Do you need any further method, which is not listed here? Just open an issue with the required method or even better open a PR to speed things up!
+
 # Contributing
 Want to contribute? Great!
 
