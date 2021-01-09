@@ -2,12 +2,13 @@
 
 namespace bitbuyAT\Bitstamp\Tests;
 
-use PHPUnit\Framework\TestCase;
-use GuzzleHttp\Client as HttpClient;
 use bitbuyAT\Bitstamp\Client;
+use bitbuyAT\Bitstamp\Exceptions\BitstampApiErrorException;
+use bitbuyAT\Bitstamp\Objects\DepositAddress;
 use bitbuyAT\Bitstamp\Objects\UserTransaction;
 use bitbuyAT\Bitstamp\Objects\UserTransactionsCollection;
-use bitbuyAT\Bitstamp\Exceptions\BitstampApiErrorException;
+use GuzzleHttp\Client as HttpClient;
+use PHPUnit\Framework\TestCase;
 
 class PrivateClientTest extends TestCase
 {
@@ -29,12 +30,12 @@ class PrivateClientTest extends TestCase
         );
     }
 
-    public function test_client_instance_can_be_created(): void
+    public function testClientInstanceCanBeCreated(): void
     {
         $this->assertInstanceOf(Client::class, $this->bitstampService);
     }
 
-    public function test_get_account_balance(): void
+    public function testGetAccountBalance(): void
     {
         $accountBalance = $this->bitstampService->getAccountBalance();
         $data = $accountBalance->getData();
@@ -82,7 +83,7 @@ class PrivateClientTest extends TestCase
         $this->assertEquals($accountBalance->btceurFee(), $data['btceur_fee']);
     }
 
-    public function test_get_user_transactions(): void
+    public function testGetUserTransactions(): void
     {
         $userTransactions = $this->bitstampService->getUserTransactions('btceur');
         $firstUserTransaction = $userTransactions->first();
@@ -110,16 +111,36 @@ class PrivateClientTest extends TestCase
         }
     }
 
-    public function test_throw_error_on_invalid_params_when_getting_user_transactions(): void
+    public function testThrowErrorOnInvalidParamsWhenGettingUserTransactions(): void
     {
         $this->expectException(BitstampApiErrorException::class);
         $this->expectExceptionMessage('Invalid offset.');
         $this->bitstampService->getUserTransactions('btceur', -1);
     }
 
-    public function test_it_should_get_all_user_transactions_if_pair_is_empty(): void
+    public function testItShouldGetAllUserTransactionsIfPairIsEmpty(): void
     {
         $userTransactions = $this->bitstampService->getUserTransactions();
         $this->assertInstanceOf(UserTransactionsCollection::class, $userTransactions);
+    }
+
+    public function testGetAddresses(): void
+    {
+        $ethAddress = $this->bitstampService->getDepositAddress('ETH');
+        $this->assertInstanceOf(DepositAddress::class, $ethAddress);
+        $this->assertArrayHasKey('address', $ethAddress->getData());
+
+        $paxAddress = $this->bitstampService->getDepositAddress('PAX');
+        $this->assertInstanceOf(DepositAddress::class, $paxAddress);
+        $this->assertArrayHasKey('address', $paxAddress->getData());
+
+        // they should be the same because PAX are ETH ERC-20 tokens and use the same address for deposit
+        $this->assertEquals($paxAddress->getAddress(), $ethAddress->getAddress());
+    }
+
+    public function testGetBitcoinAddress(): void
+    {
+        $btcAddress = $this->bitstampService->getDepositAddress('BTC');
+        $this->assertArrayHasKey('address', $btcAddress->getData());
     }
 }

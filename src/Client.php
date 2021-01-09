@@ -5,6 +5,7 @@ namespace bitbuyAT\Bitstamp;
 use bitbuyAT\Bitstamp\Contracts\Client as ClientContract;
 use bitbuyAT\Bitstamp\Exceptions\BitstampApiErrorException;
 use bitbuyAT\Bitstamp\Objects\Balance;
+use bitbuyAT\Bitstamp\Objects\DepositAddress;
 use bitbuyAT\Bitstamp\Objects\OrderBook;
 use bitbuyAT\Bitstamp\Objects\Pair;
 use bitbuyAT\Bitstamp\Objects\PairsCollection;
@@ -18,7 +19,6 @@ use GuzzleHttp\ClientInterface as HttpClient;
 class Client implements ClientContract
 {
     const API_URL = 'https://www.bitstamp.net/api';
-    const API_VERSION = 'v2';
 
     /**
      * API key.
@@ -47,10 +47,9 @@ class Client implements ClientContract
     protected $client;
 
     /**
-     * @param HttpClient $client
-     * @param string     $key      API key
-     * @param string     $secret   API secret
-     * @param string     $customerId customer id (can be found in account balance)
+     * @param string $key        API key
+     * @param string $secret     API secret
+     * @param string $customerId customer id (can be found in account balance)
      */
     public function __construct(HttpClient $client, ?string $key = '', ?string $secret = '', ?string $customerId = '')
     {
@@ -62,10 +61,6 @@ class Client implements ClientContract
 
     /**
      * Get ticker information.
-     *
-     * @param string $pair
-     *
-     * @return Ticker
      *
      * @throws BitstampApiErrorException
      */
@@ -79,10 +74,6 @@ class Client implements ClientContract
     /**
      * Get hourly ticker information.
      *
-     * @param string $pair
-     *
-     * @return Ticker
-     *
      * @throws BitstampApiErrorException
      */
     public function getHourlyTicker(string $pair): Ticker
@@ -95,13 +86,10 @@ class Client implements ClientContract
     /**
      * Get order book.
      *
-     * @param string $pair
-     * @param int    $group optional group
-     *                      0: orders are not grouped at same price
-     *                      1: orders are grouped at same price - default
-     *                      2: orders with their order ids are not grouped at same price
-     *
-     * @return OrderBook
+     * @param int $group optional group
+     *                   0: orders are not grouped at same price
+     *                   1: orders are grouped at same price - default
+     *                   2: orders with their order ids are not grouped at same price
      *
      * @throws BitstampApiErrorException
      */
@@ -115,7 +103,6 @@ class Client implements ClientContract
     /**
      * Get current transactions.
      *
-     * @param string $pair
      * @param string $time The time interval from which we want the transactions to be returned.
      *                     Possible values are minute, hour (default) or day.
      *
@@ -150,8 +137,6 @@ class Client implements ClientContract
 
     /**
      * Get account balance.
-     *
-     * @return Balance
      *
      * @throws BitstampApiErrorException
      */
@@ -196,29 +181,57 @@ class Client implements ClientContract
     }
 
     /**
-     * Make public request request
-     * Currently only get request.
+     * Gets deposit address for given asset.
      *
-     * @param string $method
-     * @param string $path
-     * @param array  $parameters
-     *
-     * @return array
+     * @param string $assetCode Asset code of the deposit address to be displayed (e.g. BTC, ETH, XRP).
      *
      * @throws BitstampApiErrorException
      */
-    public function publicRequest(string $method, string $path = '', $parameters = []): array
+    public function getDepositAddress(string $assetCode): DepositAddress
+    {
+        switch (strtoupper($assetCode)) {
+            case 'BTC':
+                $data = $this->privateRequest('bitcoin_deposit_address', [], '');
+                break;
+            case 'XRP':
+            case 'LTC':
+            case 'ETH':
+            case 'BCH':
+            case 'XLM':
+            case 'PAX':
+            case 'LINK':
+            case 'OMG':
+            case 'USDC':
+                $data = $this->privateRequest(strtolower($assetCode).'_address');
+                break;
+            default:
+                throw new BitstampApiErrorException('Unknown asset ('.$assetCode.')');
+                break;
+        }
+
+        return new DepositAddress($data);
+    }
+
+    /**
+     * Make public request request
+     * Currently only get request.
+     *
+     * @param array $parameters
+     *
+     * @throws BitstampApiErrorException
+     */
+    public function publicRequest(string $method, string $path = '', $parameters = [], string $version = 'v2'): array
     {
         $headers = ['User-Agent' => 'Bitstamp PHP API Agent'];
 
         try {
-            $response = $this->client->get($this->buildUrl($method).'/'.$path, [
+            $response = $this->client->get($this->buildUrl($method, $version).'/'.$path, [
                 'headers' => $headers,
                 'query' => $parameters,
             ]);
         } catch (\Exception $exception) {
             if ($exception->getCode() === 404) {
-                throw new BitstampApiErrorException('Endpoint not found: ('.$this->buildUrl($method).'/'.$path.')');
+                throw new BitstampApiErrorException('Endpoint not found: ('.$this->buildUrl($method, $version).'/'.$path.')');
             } else {
                 throw new BitstampApiErrorException($exception->getMessage());
             }
@@ -233,14 +246,9 @@ class Client implements ClientContract
      * Make private request request
      * Currently only post request.
      *
-     * @param string $method
-     * @param array  $parameters
-     *
-     * @return array
-     *
      * @throws BitstampApiErrorException
      */
-    public function privateRequest(string $method, array $parameters = []): array
+    public function privateRequest(string $method, array $parameters = [], string $version = 'v2'): array
     {
         $headers = ['User-Agent' => 'Bitstamp PHP API Agent'];
 
@@ -249,46 +257,44 @@ class Client implements ClientContract
         $parameters['signature'] = $this->generateSign();
 
         try {
-            $response = $this->client->post($this->buildUrl($method).'/', [
+            $response = $this->client->post($this->buildUrl($method, $version).'/', [
                 'headers' => $headers,
                 'form_params' => $parameters,
                 'verify' => true,
             ]);
         } catch (\Exception $exception) {
             if ($exception->getCode() === 404) {
-                throw new BitstampApiErrorException('Endpoint not found: ('.$this->buildUrl($method).')');
+                throw new BitstampApiErrorException('Endpoint not found: ('.$this->buildUrl($method, $version).')');
             } else {
                 throw new BitstampApiErrorException($exception);
             }
         }
 
-        return $this->decodeResult(
-            $response->getBody()->getContents()
-        );
+        $responseContent = $response->getBody()->getContents();
+
+        // According to docs v1 bitcoin_deposit_address endpoint should return json, but instead returns string
+        // the following code will fix that
+        if ($method === 'bitcoin_deposit_address' && $version === '') {
+            $responseContent = '{"address": '.$responseContent.'}';
+        }
+
+        return $this->decodeResult($responseContent);
     }
 
     /**
      * Build url.
-     *
-     * @param string $method
-     *
-     * @return string
      */
-    protected function buildUrl(string $method): string
+    protected function buildUrl(string $method, string $version): string
     {
-        return static::API_URL.$this->buildPath($method);
+        return static::API_URL.$this->buildPath($method, $version);
     }
 
     /**
      * Build path.
-     *
-     * @param string $method
-     *
-     * @return string
      */
-    protected function buildPath(string $method): string
+    protected function buildPath(string $method, string $version): string
     {
-        return '/'.static::API_VERSION.'/'.$method;
+        return empty($version) ? '/'.$method : '/'.$version.'/'.$method;
     }
 
     /**
@@ -299,10 +305,8 @@ class Client implements ClientContract
      *   msg=message,
      *   digestmod=hashlib.sha256
      * ).hexdigest().upper().
-     *
-     * @return string
      */
-    protected function generateSign(): string
+    public function generateSign(): string
     {
         $message = $this->nonce.$this->customerId.$this->key;
 
@@ -312,10 +316,8 @@ class Client implements ClientContract
     /**
      * Generate a 64 bit nonce using a timestamp at microsecond resolution
      * string functions are used to avoid problems on 32 bit systems.
-     *
-     * @return string
      */
-    protected function generateNonce(): string
+    public function generateNonce(): string
     {
         $nonce = explode(' ', microtime());
         $this->nonce = $nonce[1].str_pad(substr($nonce[0], 2, 6), 6, '0');
@@ -327,8 +329,6 @@ class Client implements ClientContract
      * Decode json response from Bitstamp API.
      *
      * @param $response
-     *
-     * @return array
      */
     protected function decodeResult($response): array
     {
