@@ -18,7 +18,7 @@ use GuzzleHttp\ClientInterface as HttpClient;
 
 class Client implements ClientContract
 {
-    const API_URL = 'https://www.bitstamp.net/api';
+    public const API_URL = 'https://www.bitstamp.net/api';
 
     /**
      * API key.
@@ -189,27 +189,7 @@ class Client implements ClientContract
      */
     public function getDepositAddress(string $assetCode): DepositAddress
     {
-        switch (strtoupper($assetCode)) {
-            case 'BTC':
-                $data = $this->privateRequest('bitcoin_deposit_address', [], '');
-                break;
-            case 'XRP':
-            case 'LTC':
-            case 'ETH':
-            case 'BCH':
-            case 'XLM':
-            case 'PAX':
-            case 'LINK':
-            case 'OMG':
-            case 'USDC':
-                $data = $this->privateRequest(strtolower($assetCode).'_address');
-                break;
-            default:
-                throw new BitstampApiErrorException('Unknown asset ('.$assetCode.')');
-                break;
-        }
-
-        return new DepositAddress($data);
+        return new DepositAddress($this->privateRequest(strtolower($assetCode).'_address'));
     }
 
     /**

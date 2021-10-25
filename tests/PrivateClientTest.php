@@ -141,6 +141,7 @@ class PrivateClientTest extends TestCase
     public function testGetBitcoinAddress(): void
     {
         $btcAddress = $this->bitstampService->getDepositAddress('BTC');
+        $this->assertInstanceOf(DepositAddress::class, $btcAddress);
         $this->assertArrayHasKey('address', $btcAddress->getData());
     }
 }
