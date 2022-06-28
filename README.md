@@ -82,6 +82,5 @@ Please check [LICENSE.txt](https://github.com/bitbuyAT/bitstamp-api-client/blob/
 
 # Visit us
 
-bitbuy GmbH - https://bitbuy.at
-
+bitbuy GmbH / bitcoin.wien (https://www.bitcoin.wien/)
 
