@@ -42,6 +42,13 @@ class Client implements ClientContract
     protected $customerId;
 
     /**
+     * Nonce.
+     *
+     * @var string
+     */
+    protected $nonce;
+
+    /**
      * @var HttpClient
      */
     protected $client;
@@ -160,7 +167,7 @@ class Client implements ClientContract
      *
      * @throws BitstampApiErrorException
      */
-    public function getUserTransactions(?string $pair = null, ?int $offset = 0, ?int $limit = 100, ?string $sort = 'desc', ?int $sinceTimestamp = null): UserTransactionsCollection
+    public function getUserTransactions(string $pair = null, ?int $offset = 0, ?int $limit = 100, ?string $sort = 'desc', int $sinceTimestamp = null): UserTransactionsCollection
     {
         $params = [
             'offset' => $offset,
@@ -307,8 +314,6 @@ class Client implements ClientContract
 
     /**
      * Decode json response from Bitstamp API.
-     *
-     * @param $response
      */
     protected function decodeResult($response): array
     {
